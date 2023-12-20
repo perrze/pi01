@@ -1,0 +1,40 @@
+@media only screen and (max-width: 900px) {
+    #live-view {
+        display: none;
+    }
+
+    #controls {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: var(--padding);
+        display: flex;
+        flex-direction: column-reverse;
+        /* justify-content: space-between; */
+    }
+
+    .stick_container {
+        position: relative;
+        align-self: center;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    #controls-sliders {
+        align-self: center;
+    }
+
+    #state {
+        transform: none;
+        position: absolute;
+        width: fit-content;
+        left: auto;
+        top: var(--padding);
+        right: var(--padding);
+    }
+
+    #notifications {
+        top: calc(5*var(--padding));
+    }
+}

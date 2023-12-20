@@ -1,0 +1,406 @@
+:root {
+    --roundness: .6em;
+    --background-color: hsl(0, 0%, 20%);
+    --padding: 1em;
+}
+
+html {
+    font-family: monospace;
+    touch-action: none;
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 30%);
+}
+
+#state {
+    position: absolute;
+    top: var(--padding);
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 0.6em;
+    background-color: hsl(0, 0%, 30%);
+    border-radius: 4em;
+    color: white;
+    user-select: none;
+}
+
+.state-info {
+    background-color: green !important;
+}
+
+.state-warning {
+    background-color: orange !important;
+}
+
+.state-error {
+    background-color: red !important;
+}
+
+.retry_button {
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+#notifications {
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+    width: 20%;
+}
+
+.notification {
+    box-shadow: 0 0 20px 2px hsla(0, 0%, 30%, 20%);
+    background-color: white;
+    border-radius: .4em;
+    border-left: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
+    transition: opacity .4s;
+}
+
+.notification-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.notification-close-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.notification-close-button:hover {
+    background-color: hsla(0, 0%, 50%, 20%);
+}
+
+.notification-header {
+    font-weight: bold;
+}
+
+.notification-info {
+    border-left: .6em solid green;
+}
+
+.notification-warn {
+    border-left: .6em solid orange;
+}
+
+.notification-error {
+    border-left: .6em solid red;
+}
+
+
+
+
+
+#controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--padding);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.controls-disabled {
+    opacity: 30%;
+}
+
+#controls-sliders {
+    align-self: flex-end;
+}
+
+.stick_container {
+    position: relative;
+    align-self: flex-start;
+    background-color: var(--background-color);
+    border-radius: 100%;
+    padding: 4%;
+    box-shadow: inset 0 0 14px 3px black;
+}
+
+.stick {
+    position: relative;
+    transform: translate(0%, 0%);
+    background-color: hsl(0, 0%, 40%);
+    border: solid hsl(0, 0%, 80%);
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: 5px;
+}
+
+.dragslide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    user-select: none;
+    height: 3em;
+}
+
+.dragslide-drag {
+    background-color: var(--background-color);
+    border-top-right-radius: var(--roundness);
+    border-bottom-right-radius: var(--roundness);
+    width: 20em;
+    height: 100%;
+    box-shadow: inset 0 0 14px 3px black;
+    background-image: repeating-linear-gradient(to right, hsl(0, 0%, 50%), hsl(0, 0%, 50%) 1px, transparent 1px, transparent);
+    background-size: 20px;
+    background-position: 0px 0px;
+}
+
+.dragslide-label {
+    padding-right: var(--roundness);
+    padding-left: 1em;
+    color: white;
+    align-self: center;
+    line-height: 100%;
+    background-color: var(--background-color);
+    /* box-shadow: inset 0 0 14px 3px black; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: .6em;
+    border-bottom-left-radius: .6em;
+}
+
+.dragslide-label>span {
+    color: white;
+}
+
+.dragslide-value {
+    position: relative;
+    width: max-content;
+    height: 1em;
+    text-align: center;
+    display: block;
+    padding-block: 0;
+    padding-inline: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 1em;
+}
+
+#live-view {
+    position: relative;
+    width: 60vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2em;
+}
+
+#live-view>video {
+    border-radius: inherit;
+    position: relative;
+    min-width: 100%;
+    /* min-height: 100%; */
+    overflow: hidden;
+    box-shadow: 0 0 50px 3px hsla(0, 0%, 10%, 50%);
+    transform: rotateY(180deg)
+}
+
+.no-video {
+    min-width: 50vw;
+    min-height: 50vh;
+    background: repeating-linear-gradient(-55deg, #222, #222 10px, #333 10px, #333 20px);
+    /* background-size: 20px 20px; */
+    /* background-position: 0px 0px; */
+}
+
+.no-video>video {
+    display: none;
+}
+
+.no-video-text {
+    display: none;
+}
+
+.no-video>.no-video-text {
+    position: relative;
+    display: block;
+    max-width: fit-content;
+    font-size: xx-large;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 6em;
+    height: 3em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 0 var(--roundness) var(--roundness) 0;
+    background-color: var(--background-color);
+    box-shadow: inset 0 0 14px 3px black;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 2.2em;
+    width: 2.2em;
+    left: .4em;
+    bottom: .4em;
+    background-color: white;
+    border-radius: var(--roundness);
+    
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+input:checked+.slider {
+    background-color: hsl(200, 50%, 50%);
+}
+
+input:checked+.slider:before {
+    transform: translateX(3em);
+    -webkit-transform: translateX(3em);
+    -ms-transform: translateX(3em);
+}
+
+.switch-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    user-select: none;
+    justify-content: space-between;
+    height: 3em;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.switch-label {
+    padding-right: .6em;
+    padding-left: 1em;
+    color: white;
+    align-self: center;
+    line-height: 100%;
+    background-color: var(--background-color);
+    /* box-shadow: inset 0 0 14px 3px black; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top-left-radius: .6em;
+    border-bottom-left-radius: .6em;
+}
+
+.infos-panel {
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border-radius: var(--roundness);
+    box-shadow: inset 0 0 14px 3px black;
+    background-color: var(--background-color);
+}
+
+.infos-panel > :first-child {
+    margin-top: 0;
+}
+
+.infos-panel > :last-child {
+    margin-bottom: 0;
+}
+
+.info-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: hsl(0, 0%, 50%);
+}
+
+@keyframes glowflicker {
+    0% { filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0)) saturate(0%) brightness(50%); }
+    100% { filter: drop-shadow(0px 0px 10px var(--icon-color)) saturate(100%) brightness(100%); }
+}
+
+.info-container > :first-child {
+    --icon-color: blue; /* Fallback */
+    margin-right: 1em;
+    fill: hsl(0, 0%, 50%);
+}
+
+.info-active {
+    color: white;
+}
+
+.info-active > :first-child {
+    filter: drop-shadow(0px 0px 10px var(--icon-color));
+    fill: var(--icon-color);
+    animation-name: glowflicker;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+button {
+    border-radius: var(--roundness);
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: var(--background-color);
+    border: none;
+    color: white;
+}
+button:active {
+    box-shadow: inset 0 0 14px 3px black;
+}
+
+.switch-container > button {
+    height: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin: 0;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<head lang="fr-fr">
+    <title>qar interface</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/phone.css" rel="stylesheet">
+
+    <meta meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+    <div id="live-view" class="no-video">
+        <div class="no-video-text">NO VIDEO</div>
+        <video id="myVidPlayer" muted autoplay invert style="user-select: none;">
+        </video>
+    </div>
+    <div class="infos-panel">
+        <div class="info-container" id="under_voltage">
+            <svg xmlns="http://www.w3.org/2000/svg" width="2em" viewBox="0 0 448 512" style="--icon-color: yellow;">
+                <path
+                    d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z" />
+            </svg>
+            <div>under-voltage</div>
+        </div>
+    </div>
+    <div id="state" class="notification-warning">No state</div>
+    <div id="notifications"></div>
+    <div id="controls">
+        <div class="stick_container" id="joystick">
+            <div class="stick"></div>
+        </div>
+        <div id="controls-sliders">
+            <div class="switch-container">
+                <div style="display: flex; height: 100%;">
+                    <div class="switch-label">autonomous</div>
+                    <label class="switch">
+                        <input type="checkbox" id="mode_switch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button id="search_left">
+                    <
+                </button>
+                <button id="search_right">
+                    >
+                </button>
+            </div>
+            <dragslide class="dragslide" id="dragslide_maxspeed">
+                <div class="dragslide-label">
+                    <span>
+                        &nbsp;max speed
+                    </span>
+                </div>
+                <div class="dragslide-drag">
+                    <div class="dragslide-value">unknown</div>
+                </div>
+            </dragslide>
+        </div>
+    </div>
+    <script src="/js/joy.js"></script>
+    <script src="/js/dragslide.js"></script>
+    <script src="/js/main.js"></script>
+</body>
